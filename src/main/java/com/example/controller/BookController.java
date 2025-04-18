@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.Service.BookService;
 import com.example.entity.Books;
 import jakarta.annotation.Resource;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -14,11 +15,18 @@ import java.util.List;
 public class BookController {
     @Resource
     BookService service;
-    @RequestMapping(value = "/books",method = RequestMethod.GET)
-    public String books(Model model){
+    @RequestMapping(value = "/books", method = RequestMethod.GET)
+    public String books(@RequestParam(defaultValue = "1") int page,
+                        @RequestParam(defaultValue = "10") int size,
+                        Model model) {
+        // 确保页码不小于1
+        page = Math.max(page, 1);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("nickname",user.getUsername());
-        model.addAttribute("book_list", service.BookList());
+    
+        model.addAttribute("nickname", user.getUsername());
+        Page<Books> bookPage = service.getBooksPage(page, size);
+        model.addAttribute("book_list", bookPage.getContent());
+        model.addAttribute("bookPage", bookPage);
         return "books";
     }
     @GetMapping("/add-book")

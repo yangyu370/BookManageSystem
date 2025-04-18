@@ -5,6 +5,9 @@ import com.example.entity.Books;
 import com.example.entity.Borrow;
 import com.example.repo.BookRepository;
 import jakarta.annotation.Resource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,4 +50,8 @@ public class BookServiceImpl implements BookService {
       return repository.findByTitleContaining(keyword);
     }
 
+    public Page<Books> getBooksPage(int page, int size) {
+        Pageable pageable = PageRequest.of(Math.max(page - 1, 0), size);
+        return repository.findAll(pageable);
+    }
 }
