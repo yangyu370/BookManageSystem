@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/BookManager
+    username: root
+    password: 12345678
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      port: 6379
+  web:
+    resources:
+      static-locations: classpath:/static/
+      cache:
+        period: 86400
+  mvc:
+    static-path-pattern: /static/**
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+logging:
+  level:
+    web: debug
+
+
+server:
+  port: 8080
