@@ -19,4 +19,7 @@ public class Student {
     String sex;
     @Column(name="grade")
     int grade;
+
+    @OneToOne(mappedBy = "student")
+    private Account account;
 }

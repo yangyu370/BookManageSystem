@@ -17,4 +17,18 @@ public class Account {
     String password;
     @Column(name="role")
     String role;
+    @Column(name="email")
+    String email;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    private Student student;
+    public void setStudentInfo(String name, String email, String sex, Integer grade) {
+        if (this.student == null) {
+            this.student = new Student();
+        }
+        this.student.setName(name);
+        this.student.setEmail(email);
+        this.student.setSex(sex);
+        this.student.setGrade(grade);
+    }
 }

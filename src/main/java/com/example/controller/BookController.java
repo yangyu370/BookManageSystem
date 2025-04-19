@@ -1,8 +1,10 @@
 package com.example.controller;
 
 import com.example.Service.BookService;
+import com.example.Service.UserAuthService;
 import com.example.entity.Books;
 import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -15,14 +17,17 @@ import java.util.List;
 public class BookController {
     @Resource
     BookService service;
+    @Autowired
+    private UserAuthService userAuthService;
+
     @RequestMapping(value = "/books",method = RequestMethod.GET)
     public String books(@RequestParam(defaultValue = "1") int page,
                         @RequestParam(defaultValue = "10") int size,
                         Model model){
         // page参数前端从1开始，后端-1传给Service
         page = Math.max(page, 1);
+
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    
         model.addAttribute("nickname",user.getUsername());
         Page<Books> bookPage = service.getBooksPage(page - 1, size); // 这里-1
         model.addAttribute("book_list", bookPage.getContent());

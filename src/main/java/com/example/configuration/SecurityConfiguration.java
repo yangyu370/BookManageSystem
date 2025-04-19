@@ -38,7 +38,10 @@ public class SecurityConfiguration {
                 //以下是验证请求拦截和放行配置
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/static/**").permitAll();
-                    auth.anyRequest().authenticated();//将所有请求全部拦截，一律需要验证
+                    auth.requestMatchers("/register").permitAll();
+                    auth.requestMatchers("/api/auth/verify-code").permitAll();
+                    auth.requestMatchers("/login").permitAll();
+                    auth.anyRequest().authenticated();
                 })
                 //以下是表单登录相关配置
                 .formLogin(conf -> {
@@ -47,7 +50,7 @@ public class SecurityConfiguration {
                     conf.defaultSuccessUrl("/books");//登录成功后跳转的页面
                     conf.failureUrl("/error");
                     conf.permitAll();    //将登录相关的地址放行，否则未登录的用户连登录界面都进不去
-                    //用户名和密码的表单字段名称，不过默认就是这个，可以不配置，除非有特殊需求
+                    //用户名和密码的表单字段名称
                     conf.usernameParameter("username");
                     conf.passwordParameter("password");
                 })

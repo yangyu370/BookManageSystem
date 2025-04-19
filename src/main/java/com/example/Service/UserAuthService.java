@@ -14,15 +14,19 @@ public class UserAuthService implements UserDetailsService {
     @Resource
     AccountRepository repository;
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Account account=repository.findAccountByUsername(username);
-        if(account == null) throw new UsernameNotFoundException("用户 "+username+" 登录失败，用户名不存在！");
+    public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
+        Account account = repository.findAccountByUsername(usernameOrEmail);
+        if (account == null) {
+            account = repository.findAccountByEmail(usernameOrEmail);
+        }
+        if (account == null) {
+            throw new UsernameNotFoundException("用户 " + usernameOrEmail + " 登录失败，用户名或邮箱不存在！");
+        }
         return User
                 .withUsername(account.getUsername())
                 .password(account.getPassword())
                 .roles(account.getRole())
                 .build();
-
     }
 
 }
