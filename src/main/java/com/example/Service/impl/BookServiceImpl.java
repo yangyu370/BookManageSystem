@@ -2,7 +2,6 @@ package com.example.Service.impl;
 
 import com.example.Service.BookService;
 import com.example.entity.Books;
-import com.example.entity.Borrow;
 import com.example.repo.BookRepository;
 import jakarta.annotation.Resource;
 import org.springframework.data.domain.Page;
@@ -49,9 +48,9 @@ public class BookServiceImpl implements BookService {
     public List<Books> searchBook(String keyword) {
       return repository.findByTitleContaining(keyword);
     }
-
+    @Override
     public Page<Books> getBooksPage(int page, int size) {
-        Pageable pageable = PageRequest.of(Math.max(page - 1, 0), size);
+        Pageable pageable = PageRequest.of(Math.max(page, 0), size); // page已经是0基
         return repository.findAll(pageable);
     }
 }

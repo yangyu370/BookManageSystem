@@ -161,18 +161,29 @@
                                     <div class="pagination justify-content-center mt-4">
                                         <ul class="pagination">
                                             <li class="page-item" th:classappend="${bookPage.hasPrevious()} ? '' : 'disabled'">
-                                                <a class="page-link" th:href="@{'/books'(page=${bookPage.number > 0 ? bookPage.number - 1 : 0}, size=${bookPage.size})}" aria-label="Previous">
+                                                <a class="page-link"
+                                                   th:href="@{'/books'(page=${bookPage.number}, size=${bookPage.size})}"
+                                                   th:if="${bookPage.hasPrevious()}"
+                                                   aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                 </a>
+                                                <span class="page-link" th:if="${!bookPage.hasPrevious()}">&laquo;</span>
                                             </li>
-                                            <li class="page-item" th:each="i : ${#numbers.sequence(1, bookPage.totalPages)}"
+                                            <li class="page-item"
+                                                th:each="i : ${#numbers.sequence(1, bookPage.totalPages)}"
                                                 th:classappend="${i == bookPage.number + 1} ? 'active'">
-                                                <a class="page-link" th:href="@{'/books'(page=${i - 1}, size=${bookPage.size})}" th:text="${i}">1</a>
+                                                <a class="page-link"
+                                                   th:href="@{'/books'(page=${i}, size=${bookPage.size})}"
+                                                   th:text="${i}">1</a>
                                             </li>
                                             <li class="page-item" th:classappend="${bookPage.hasNext()} ? '' : 'disabled'">
-                                                <a class="page-link" th:href="@{'/books'(page=${bookPage.number + 1}, size=${bookPage.size})}" aria-label="Next">
+                                                <a class="page-link"
+                                                   th:href="@{'/books'(page=${bookPage.number + 2}, size=${bookPage.size})}"
+                                                   th:if="${bookPage.hasNext()}"
+                                                   aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                 </a>
+                                                <span class="page-link" th:if="${!bookPage.hasNext()}">&raquo;</span>
                                             </li>
                                         </ul>
                                     </div>

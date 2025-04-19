@@ -15,16 +15,16 @@ import java.util.List;
 public class BookController {
     @Resource
     BookService service;
-    @RequestMapping(value = "/books", method = RequestMethod.GET)
+    @RequestMapping(value = "/books",method = RequestMethod.GET)
     public String books(@RequestParam(defaultValue = "1") int page,
                         @RequestParam(defaultValue = "10") int size,
-                        Model model) {
-        // 确保页码不小于1
+                        Model model){
+        // page参数前端从1开始，后端-1传给Service
         page = Math.max(page, 1);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     
-        model.addAttribute("nickname", user.getUsername());
-        Page<Books> bookPage = service.getBooksPage(page, size);
+        model.addAttribute("nickname",user.getUsername());
+        Page<Books> bookPage = service.getBooksPage(page - 1, size); // 这里-1
         model.addAttribute("book_list", bookPage.getContent());
         model.addAttribute("bookPage", bookPage);
         return "books";
