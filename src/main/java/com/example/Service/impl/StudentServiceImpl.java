@@ -2,9 +2,8 @@ package com.example.Service.impl;
 
 import com.example.Service.StudentService;
 import com.example.entity.Student;
-import com.example.repo.StudentRepository;
+import com.example.repository.StudentRepository;
 import jakarta.annotation.Resource;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

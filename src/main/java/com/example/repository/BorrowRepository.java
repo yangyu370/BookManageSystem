@@ -1,4 +1,4 @@
-package com.example.repo;
+package com.example.repository;
 
 import com.example.entity.Borrow;
 import org.springframework.data.jpa.repository.JpaRepository;

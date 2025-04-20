@@ -2,7 +2,7 @@ package com.example.Service.impl;
 
 import com.example.Service.BookService;
 import com.example.entity.Books;
-import com.example.repo.BookRepository;
+import com.example.repository.BookRepository;
 import jakarta.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

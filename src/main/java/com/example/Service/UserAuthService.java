@@ -1,7 +1,7 @@
 package com.example.Service;
 
 import com.example.entity.Account;
-import com.example.repo.AccountRepository;
+import com.example.repository.AccountRepository;
 import jakarta.annotation.Resource;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

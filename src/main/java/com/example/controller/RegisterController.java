@@ -22,16 +22,16 @@ public class RegisterController {
     @PostMapping("/register")
     public String doregister(@RequestParam("username") String username, @RequestParam("email")String email, @RequestParam("password")String password, @RequestParam("verifyCode")String verifyCode){
         if(!registerService.doVerify(email, verifyCode)) {
-            return "redirect:/register?error=验证码错误或已过期";
+            return "redirect:/register?error=CodeOutofTime";
         }
         // 检查用户名是否已存在
         if(userService.isUsernameExists(username)) {
-            return "redirect:/register?error=用户名已存在";
+            return "redirect:/register?error=UsernameExists";
         }
 
         // 检查邮箱是否已被注册
         if(userService.isEmailExists(email)) {
-            return "redirect:/register?error=该邮箱已被注册";
+            return "redirect:/register?error=EmailExists";
         }
         // 创建新用户并保存
         Account account = new Account();

@@ -2,7 +2,7 @@ package com.example.Service.impl;
 
 import com.example.Service.UserService;
 import com.example.entity.Account;
-import com.example.repo.AccountRepository;
+import com.example.repository.AccountRepository;
 import jakarta.annotation.Resource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
