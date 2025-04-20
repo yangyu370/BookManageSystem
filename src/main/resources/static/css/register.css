@@ -1,0 +1,58 @@
+/* 自定义样式 */
+.primary {
+    color: #4e73df;
+}
+.ad-auth-btn .ad-btn {
+    background: linear-gradient(to right, #4e73df, #36b9cc);
+    transition: all 0.3s ease;
+}
+.ad-auth-btn .ad-btn:hover {
+    background: linear-gradient(to right, #36b9cc, #4e73df);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(78, 115, 223, 0.3);
+}
+.ad-auth-form .ad-auth-feilds {
+    transition: all 0.3s ease;
+}
+.ad-auth-form .ad-auth-feilds:focus-within {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(78, 115, 223, 0.1);
+}
+.ad-auth-wrapper {
+    background: #11a1fd;
+}
+.ad-auth-box {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+.ad-auth-img img {
+    transition: all 0.5s ease;
+}
+.ad-auth-img:hover img {
+    transform: scale(1.05);
+}
+.ad-register-text a {
+    color: #36b9cc;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.ad-register-text a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+.ad-auth-content h2 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+.ad-auth-content h4 {
+    color: #e0e0e0;
+    margin-bottom: 30px;
+}
+.verify-btn {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
